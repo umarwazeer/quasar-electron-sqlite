@@ -3,7 +3,7 @@
 A very basic Quasar project, built for electron, that uses the sqlite database. It's a simple app that allows you to add users on the database and see their names shown in the page.
 **NOTE**: this app is **not** production ready, and **never will be**. It's just an example made from scratch, with possible bad code design. It was made only to show how to hook up an electron app made
 with Quasar with an sqlite db, since I didn't find any meaningful examples around.  
-This branch creates a connection to the database on boot. A more (maybe?) correct version where the connection is open and closed for every call can be found on the `noBoot` branch.  
+This branch creates a connection to the database on boot. A more (maybe?) correct version where the connection is opened and closed for every call can be found on the `noBoot` branch.  
 It was developed and tested on Windows 10, I haven't tested it for other OS. 
 
 
