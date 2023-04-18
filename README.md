@@ -2,7 +2,8 @@
 
 A very basic Quasar project, built for electron, that uses the sqlite database. It's a simple app that allows you to add users on the database and see their names shown in the page.
 **NOTE**: this app is **not** production ready, and **never will be**. It's just an example made from scratch, with possible bad code design. It was made only to show how to hook up an electron app made
-with Quasar with an sqlite db, since I didn't find any meaningful examples around. 
+with Quasar with an sqlite db, since I didn't find any meaningful examples around.  
+This branch creates a connection to the database on boot. A more (maybe?) correct version where the connection is open and closed for every call can be found on the `noBoot` branch.  
 It was developed and tested on Windows 10, I haven't tested it for other OS. 
 
 
@@ -28,14 +29,15 @@ yarn install
 ### Build the app
 As said above, this app is not meant to be built for a production environment. If you build it, it will not be able to find the database file. You have to tell electron to look for the file in the correct place,
 which i wasn't able to do.  
+For those curious, some info can be found at [this](https://quasar.dev/quasar-cli-webpack/developing-electron-apps/electron-accessing-files/) link.  
 A bad fix, and the one I used to test the build, is to add the db file in the folder created by the build. It seems to work for the purpose of this example, but there's a chance it could break a more serious project.
 ```bash
 quasar build -m electron
 ```
 
 ### Sources
-My main source has been [this](https://forum.quasar-framework.org/topic/335/sqlite3-in-electron-wrapper/6) old forum post on the Quasar community. 
-In case it gets deleted, I'll sum up the steps here.
+My main sources have been [this](https://forum.quasar-framework.org/topic/335/sqlite3-in-electron-wrapper/6) old forum post on the Quasar community and [this](https://github.com/luwanquan/electron-vue-sqlite3-demo) github repository. 
+In case those get deleted, I'll sum up my version of the process here.
 - create a new quasar app via the cli, using yarn (I tried npm too, but wasn't able to make it work)
 ```
 yarn create quasar
