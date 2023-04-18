@@ -25,8 +25,7 @@ module.exports = configure(function (ctx) {
     //need to add sqlite to boot files
     boot: [
       'i18n',
-      'axios',
-      'sqlite'
+      'axios'
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
