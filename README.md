@@ -34,8 +34,8 @@ quasar build -m electron
 ```
 
 ### Sources
-My main source has been [this](https://forum.quasar-framework.org/topic/335/sqlite3-in-electron-wrapper/6) old forum post on the Quasar community. 
-In case it gets deleted, I'll sum up the steps here.
+My main sources have been [this](https://forum.quasar-framework.org/topic/335/sqlite3-in-electron-wrapper/6) old forum post on the Quasar community and [this](https://github.com/luwanquan/electron-vue-sqlite3-demo) github repository. 
+In case those get delete, I'll sum up my version of the process here.
 - create a new quasar app via the cli, using yarn (I tried npm too, but wasn't able to make it work)
 ```
 yarn create quasar
@@ -57,50 +57,10 @@ yarn add electron-builder
 ```
 ./node_modules/.bin/electron-builder install-app-deps
 ```
-- create a new boot file
+
+From here on out, my code differs from that of the post, so feel free to follow either their code or mine.
+- in the `quasar.conf.js` file, make sure to add the extendWebpack option in the build field
 ```
-quasar new b sqlite
-```
-From here on out, my code differs from that of the post, so feel free to follow either their code or mine
-- fill in the `boot/sqlite.js` like so:
-
-```
-/*
-This file uses sqlite3 to connect the app to the database. Make sure that the sqlite database file
-is in the root of your project, otherwise this procedure will create a new empty file/database
-*/
-import sqlite3 from 'sqlite3'
-import { boot } from 'quasar/wrappers'
-
-console.log(sqlite3)
-
-const db = new sqlite3.Database('tufoDB.db', (err) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('db opened')
-    console.log(db)
-  }
-})
-
-
-/*
-I did this to use db in the components by using this.$db (if you plan to use it in vue components) 
-and I exported db (in case you prefer to put all db related functions in another file like me) 
-*/
-export default boot(({ app }) => {
-  app.config.globalProperties.$db = db
-
-})
-
-export { db }
-```
-- in the `quasar.conf.js` file, make sure to add sqlite to the boot and the extendWebpack option in the build field
-```
-    boot: [
-      'sqlite'
-    ],
-
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
@@ -121,5 +81,5 @@ sandbox: false,
 contextIsolation: false,
 nodeIntegration: true,
 ```
-Once you've done these steps, if you `quasar dev -m electron`, the application should start with an open connection to your sqlitedb. For some example usage of the
-sqlite3 library, you can look at the `src/database` folder.
+Everything you need to setup your db connection and your db function can be found in the  `src/database` folder
+Once you've done these steps, if you `quasar dev -m electron`, the application should start with an open connection to your sqlitedb.
