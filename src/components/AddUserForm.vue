@@ -1,6 +1,6 @@
 <template>
     <div v-if="addUserFormOpen" class="q-pa-md">
-  
+
       <q-form
         @submit="onSubmit"
         @reset="onReset"
@@ -13,7 +13,7 @@
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'You need to fill in this field']"
         />
-  
+
         <q-input
           filled
           v-model="newUser.surname"
@@ -27,14 +27,14 @@
           v-model="newUser.nickname"
           label="Nickname"
         />
-  
-  
+
+
         <div>
           <q-btn label="Submit" type="submit" color="primary"/>
           <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
         </div>
       </q-form>
-  
+
     </div>
   </template>
 
@@ -53,14 +53,13 @@ export default defineComponent({
         console.log("Ready to add user")
         this.$emit('addUser')
           },
-    
+
         onReset () {
         this.newUser.name = ""
         this.newUser.surname = ""
         this.newUser.nickname = ""
         this.$emit('closeForm')
         }
-    }    
+    }
 })
 </script>
-  
